@@ -62,6 +62,30 @@
                     "output": 0
                 }
             ]
+        },
+        {
+            "title": "Find if Path Exists in Graph",
+            "description": "Check if there exists a path between two nodes in a directed graph.",
+            "IO": [
+                {
+                    "input": {
+                        "n": 3,
+                        "edges": [[0,1],[1,2],[2,0]],
+                        "source": 0,
+                        "destination": 2
+                    },
+                    "output": true
+                },
+                {
+                    "input": {
+                        "n": 6,
+                        "edges": [[0,1],[0,2],[3,5],[5,4],[4,3]],
+                        "source": 0,
+                        "destination": 5
+                    },
+                    "output": false
+                }
+            ]
         }
     ]
 }

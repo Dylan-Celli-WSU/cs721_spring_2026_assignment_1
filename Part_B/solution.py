@@ -6,10 +6,13 @@
 import networkx as nx
 
 def parseLeetCode(input):
-    # This function will parse the input from LeetCode format and return a graph
-    G = nx.Graph()
-    # Example parsing logic (this will depend on the specific problem)
-    # For instance, if the input is a list of edges:
-    for edge in input:
-        G.add_edge(edge[0], edge[1])
-    return G
+    pass
+
+def convertToNetworkx(parsedInput):
+    pass
+
+def solveWithNetworkx(graph):
+    pass
+
+def outputLeetCodeFormat(result):
+    pass
