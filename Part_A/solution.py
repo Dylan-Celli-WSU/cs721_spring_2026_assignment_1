@@ -63,25 +63,30 @@ def multiply_ikj(A, B):
                 C[i][j] += A[i][k] * B[k][j]
     return C
 
-def time_multiplication(multiply, A, B):
+def time_multiplication(multiply, A, B, order):    
     start_time = time()
+    print(f'Starting {order}: {start_time}')
     multiply(A, B)
     end_time = time()
+    print(f'Finished {order}: {start_time}')
     return end_time - start_time
 
 # Set up
 n = 10000  # Size of the matrices: 10,000 x 10,000
 A = [[random() for _ in range(n)] for _ in range(n)]
 B = [[random() for _ in range(n)] for _ in range(n)]
+multiplication_methods = {
+    "i, j, k": multiply_ijk,
+    "j, k, i": multiply_jki,
+    "j, i, k": multiply_jik,
+    "k, i, j": multiply_kij,
+    "k, j, i": multiply_kji,
+    "i, k, j": multiply_ikj
+}
 output = ""
-# Output
-output += "Timing different loop orderings:\n"
-output += f'i, j, k: {time_multiplication(multiply_ijk, A, B)}\n' # 1
-output += f'j, k, i: {time_multiplication(multiply_jki, A, B)}\n' # 2
-output += f'j, i, k: {time_multiplication(multiply_jik, A, B)}\n' # 3
-output += f'k, i, j: {time_multiplication(multiply_kij, A, B)}\n' # 4
-output += f'k, j, i: {time_multiplication(multiply_kji, A, B)}\n' # 5
-output += f'i, k, j: {time_multiplication(multiply_ikj, A, B)}\n' # 6
+# Run
+for order, func in multiplication_methods.items():
+    output += f'{order}: {time_multiplication(func, A, B, order)}\n'
 # Write results
 with open('output.txt', 'w') as fp:
     fp.write(output)
