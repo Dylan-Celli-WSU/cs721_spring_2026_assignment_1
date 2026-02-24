@@ -68,11 +68,11 @@ def time_multiplication(multiply, A, B, order):
     print(f'Starting {order}: {start_time}')
     multiply(A, B)
     end_time = time()
-    print(f'Finished {order}: {start_time}')
+    print(f'Finished {order}: {end_time}')
     return end_time - start_time
 
 # Set up
-n = 10000  # Size of the matrices: 10,000 x 10,000
+n = 1000  # Size of the matrices: 1,000 x 1,000
 A = [[random() for _ in range(n)] for _ in range(n)]
 B = [[random() for _ in range(n)] for _ in range(n)]
 multiplication_methods = {
