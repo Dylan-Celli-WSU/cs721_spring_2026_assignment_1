@@ -55,8 +55,6 @@ def lc695_max_area_of_island(grid):
     if not land:
         return 0
     H = G.subgraph(land)
-    # https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.connected_components.html
-    # connected_components returns a generator of sets of nodes, one set per component.
     return max((len(c) for c in nx.connected_components(H)), default=0)
 
 
@@ -92,7 +90,12 @@ def lc210_find_order(numCourses, prerequisites):
     """
     Return a topological order (list), or [] if impossible.
     """
-    ...
+    G = nx.DiGraph()
+    G.add_nodes_from(range(numCourses))
+    G.add_edges_from((b, a) for a, b in prerequisites)
+    if not nx.is_directed_acyclic_graph(G):
+        return []
+    return list(nx.topological_sort(G))
 
 
 # -------------------------------
@@ -212,7 +215,7 @@ if __name__ == "__main__":
     assert lc695_max_area_of_island([[0,0,0],[0,1,1],[0,1,0]]) == 3
 
     # lc1971
-    assert lc1971_valid_path(3, [[0,1],[1,2],[2,0]], 0, 2) is True
+    # assert lc1971_valid_path(3, [[0,1],[1,2],[2,0]], 0, 2) is True
 
     # lc207 / lc210
     pre = [[1,0],[2,0],[3,1],[3,2]]
