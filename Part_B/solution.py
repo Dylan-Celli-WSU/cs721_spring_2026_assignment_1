@@ -55,7 +55,7 @@ def lc695_max_area_of_island(grid):
     if not land:
         return 0
     H = G.subgraph(land)
-    return max((len(c) for c in nx.connected_components(H)), default=0)
+    return len( max(nx.connected_components(H), key=len) ) 
 
 
 # -------------------------------
