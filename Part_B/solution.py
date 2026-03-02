@@ -160,7 +160,13 @@ def lc684_find_redundant_connection(edges):
     edges define a tree plus one extra edge; return the extra edge.
     We return the last edge that creates a cycle when processed in order.
     """
-    ...
+    G = nx.Graph()
+    for u, v in edges:
+        G.add_edge(u, v)
+    tree = nx.minimum_spanning_tree(G)
+    tree_edges = list(tree.edges())
+    unnecessary_edges = [[u,v] for u, v in edges if (u, v) not in tree_edges and (v, u) not in tree_edges]
+    return unnecessary_edges[0]
 
 
 # -------------------------------
@@ -215,7 +221,7 @@ if __name__ == "__main__":
     assert lc695_max_area_of_island([[0,0,0],[0,1,1],[0,1,0]]) == 3
 
     # lc1971
-    # assert lc1971_valid_path(3, [[0,1],[1,2],[2,0]], 0, 2) is True
+    assert lc1971_valid_path(3, [[0,1],[1,2],[2,0]], 0, 2) is True
 
     # lc207 / lc210
     pre = [[1,0],[2,0],[3,1],[3,2]]
